@@ -1,11 +1,14 @@
-h1, ul, button {
+h1,
+ul,
+button {
   margin-left: 1rem;
   text-align: left;
   list-style: none;
 }
 
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
+  /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -13,4 +16,24 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+#name {
+  text-transform: lowercase;
+}
+
+#name::first-letter {
+  text-transform: uppercase;
+}
+
+#id {
+  font-weight: 100;
+}
+
+#role {
+  text-transform: uppercase;
+}
+
+#age {
+  color: blue;
 }

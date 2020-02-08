@@ -11,16 +11,16 @@ function ListItem({ customer, setCustomer, id }) {
             {customer ?
                 <ul>
                     <li>
-                        <h2>{customer.name}</h2>
+                        <h2 id="name">{customer.name}</h2>
                     </li>
                     <li>
-                        <h3>{customer.id}</h3>
+                        <h3 id="id">{customer.id}</h3>
                     </li>
                     <li>
-                        {customer.role}
+                        <p id="role">{customer.role}</p>
                     </li>
                     <li>
-                        {customer.age}
+                        <p id="age">{customer.age}</p>
                     </li>
                 </ul>
                 : id}
