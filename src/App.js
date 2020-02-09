@@ -12,6 +12,7 @@ import {
 
 import List from "./List";
 import ListItem from "./ListItem";
+import CustomerDetail from "./CustomerDetail";
 
 function App() {
 
@@ -44,7 +45,8 @@ function Customer() {
   let { id } = useParams();
 
   return (
-    <ListItem id={id} />
+    <CustomerDetail id={id} />
   );
-  }
+}
+
 export default App;

@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
-import ListItem from './ListItem';
 
+// import {
+//     BrowserRouter as Router,
+//     Switch,
+//     Route,
+//     Link,
+//     Redirect,
+//     useLocation,
+//     useParams
+// } from "react-router-dom";
+
+
+import CustomerDetail from "./CustomerDetail"
 class List extends Component {
     constructor(props) {
         super(props);
@@ -9,8 +20,11 @@ class List extends Component {
             customer: null,
         };
     };
-    
-    
+
+    componentDidMount() {
+        this.getCustomers();
+    }
+
 
     getCustomers = async () => {
         let response = await fetch("https://customer-ids.herokuapp.com/");
@@ -25,20 +39,46 @@ class List extends Component {
         console.log("~~~WOOOOOOW~~~", customer);
     };
 
-
+    customerList = (customer, i) => {
+        if (this.state.customer) {
+            return <CustomerDetail customer={this.state.customer} />
+        }
+        return (
+            <ul key={i} onClick={() => this.setState({ customer: customer })}>
+                <li>
+                    <h2 id="name">{customer?.name}</h2>
+                </li>
+                <li>
+                    <h3 id="id">{customer?.id}</h3>
+                </li>
+            </ul>
+        );
+    }
 
     render() {
-        return (
-            <div className="container">
-                {this.state.customers ? <h1>Customer List</h1> : null}
+        if (this.state.customer) {
+            return (
+                <CustomerDetail customer={this.state.customer} />
+            );
+        } else {
 
-                {this.state.customers ?
-                    this.state.customers.map((customer, i) => <ListItem customer={customer} key={i} setCustomer={this.setCustomer} />)
-                    : null
-                }
-                <button onClick={this.getCustomers}>GET CUSTOMERS</button>
-            </div>
-        );
+            return (
+                <div className="container">
+                    {this.state.customers ? <h1>Customer List</h1> : null}
+
+                    {this.state.customers ?
+                        this.state.customers.map((customer, i) => this.customerList(customer, i))
+                        : null
+                    }
+                    {/* {this.state.customers ?
+                        this.state.customers.map((customer, i) => <ListItem customer={customer} key={i} setCustomer={this.setCustomer} />)
+                        : null
+                    } */}
+                    {/* {!this.state.customer? <button onClick={this.getCustomers}>GET CUSTOMERS</button> : null} */}
+                </div>
+            );
+        }
+
     };
 }
 
