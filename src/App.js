@@ -15,7 +15,10 @@ import ListItem from "./ListItem";
 import CustomerDetail from "./CustomerDetail";
 
 function App() {
-
+  // const id = this.props.location.search.substring(4);
+  // console.log('id', id)
+  // let query = useQuery();
+  // console.log('query.get("id")', query.get("id"))
   return (
     <div className="App">
       {/* {id} */}
@@ -27,6 +30,8 @@ function App() {
           <Route exact path="/">
             <List />
           </Route>
+          <Route exact path="/getCustomer" children={<CustomerDetail />} />
+          <Route exact path="/getCustomers" children={<List />} />
           <Route path="/getCustomers/:id" children={<Customer />} />
 
           <Route path="*">
@@ -37,6 +42,10 @@ function App() {
     </div>
   );
 }
+
+// function useQuery() {
+//   return new URLSearchParams(useLocation().search);
+// }
 
 
 function Customer() {

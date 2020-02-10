@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { useLocation, withRouter } from "react-router";
 // import {
 //     BrowserRouter as Router,
 //     Switch,
@@ -10,8 +10,8 @@ import React, { Component } from 'react';
 //     useParams
 // } from "react-router-dom";
 
-
 import CustomerDetail from "./CustomerDetail"
+
 class List extends Component {
     constructor(props) {
         super(props);
@@ -60,7 +60,10 @@ class List extends Component {
             return (
                 <CustomerDetail customer={this.state.customer} />
             );
-        } else {
+        } else if(this.props.location.search) {
+            const id = this.props.location.search.substring(4);
+            return <CustomerDetail id={id} />
+        }else {
 
             return (
                 <div className="container">
@@ -82,4 +85,5 @@ class List extends Component {
     };
 }
 
-export default List;
+// export default List;
+export default withRouter(List);
