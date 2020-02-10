@@ -21,7 +21,7 @@ button {
 }
 
 .name {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 .id {
@@ -29,7 +29,7 @@ button {
 }
 
 .role {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .age {
