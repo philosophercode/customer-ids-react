@@ -60,24 +60,26 @@ class List extends Component {
             return (
                 <CustomerDetail customer={this.state.customer} />
             );
-        } else if(this.props.location.search) {
+        } else if (this.props.location.search) {
             const id = this.props.location.search.substring(4);
             return <CustomerDetail id={id} />
-        }else {
+        } else {
 
             return (
-                <div className="container">
+                <div>
                     {this.state.customers ? <h1>Customer List</h1> : null}
+                    <div className="container">
 
-                    {this.state.customers ?
-                        this.state.customers.map((customer, i) => this.customerList(customer, i))
-                        : null
-                    }
-                    {/* {this.state.customers ?
+                        {this.state.customers ?
+                            this.state.customers.map((customer, i) => this.customerList(customer, i))
+                            : null
+                        }
+                        {/* {this.state.customers ?
                         this.state.customers.map((customer, i) => <ListItem customer={customer} key={i} setCustomer={this.setCustomer} />)
                         : null
                     } */}
-                    {/* {!this.state.customer? <button onClick={this.getCustomers}>GET CUSTOMERS</button> : null} */}
+                        {/* {!this.state.customer? <button onClick={this.getCustomers}>GET CUSTOMERS</button> : null} */}
+                    </div>
                 </div>
             );
         }

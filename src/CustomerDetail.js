@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { useLocation, withRouter } from "react-router";
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 import List from './List'
 class CustomerDetail extends Component {
     constructor(props) {
@@ -25,16 +29,18 @@ class CustomerDetail extends Component {
         if (this.props.location.search) {
             // console.log(new URLSearchParams(this.props.location.search);)
             const id = this.props.location.search.substring(4);
-            this.setState({ id: id});
-            console.log("params", id)
+            this.setState({ id: id });
+            console.log("id", id)
             this.props.history.push(`/getCustomer?id=${id}`);
             this.getCustomer(id);
         } else if (this.props.customer) {
+            const customer = this.props.customer;
             const id = this.props.customer.id;
-            this.setState({ id: id});
-            console.log("params", id);
+            // this.setState({ id: id });
+            this.setState({ customer: customer });
+            console.log("props", customer);
             this.props.history.push(`/getCustomer?id=${id}`);
-            this.getCustomer(id);
+            // this.getCustomer(id);
         }
         // console.log('history.push()', this.props.history.push(`/getCustomers/${this.props.customer.id}`))
     }
@@ -59,20 +65,29 @@ class CustomerDetail extends Component {
         return (
             <div>
                 <h1>Customer Detail</h1>
-                <ul>
-                    <li>
-                        <h2 id="name">{customer?.name}</h2>
-                    </li>
-                    <li>
-                        <h3 id="id">{customer?.id}</h3>
-                    </li>
-                    <li>
-                        <p id="role">{customer?.role}</p>
-                    </li>
-                    <li>
-                        <p id="age">{customer?.age}</p>
-                    </li>
-                </ul>
+                <div className="container">
+                    <ul>
+                        <li>
+                            <h2 id="name">{customer?.name}</h2>
+                        </li>
+                        <li>
+                            <h3 id="id">{customer?.id}</h3>
+                        </li>
+                        <li>
+                            <p id="role">{customer?.role}</p>
+                        </li>
+                        <li>
+                            <p id="age">{customer?.age}</p>
+                        </li>
+                        <Link to="/getCustomers">
+                            <button>
+                                All
+                            </button>
+                        </Link>
+                    </ul>
+
+
+                </div>
             </div>
         );
     }

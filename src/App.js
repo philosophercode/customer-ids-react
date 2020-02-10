@@ -39,6 +39,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <footer>Isaac Steinberg</footer>
     </div>
   );
 }

@@ -16,6 +16,8 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  padding: .5em 1em;
+  border-radius: 2px;
 }
 
 #name {
@@ -36,4 +38,19 @@ button {
 
 #age {
   color: blue;
+}
+
+.container {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
 }
