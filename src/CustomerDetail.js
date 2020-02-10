@@ -26,14 +26,7 @@ class CustomerDetail extends Component {
         //     console.log('this.props.location', this.props.location)
         //     return <List />
         // }
-        if (this.props.location.search) {
-            // console.log(new URLSearchParams(this.props.location.search);)
-            const id = this.props.location.search.substring(4);
-            this.setState({ id: id });
-            console.log("id", id)
-            this.props.history.push(`/getCustomer?id=${id}`);
-            this.getCustomer(id);
-        } else if (this.props.customer) {
+        if (this.props.customer) {
             const customer = this.props.customer;
             const id = this.props.customer.id;
             // this.setState({ id: id });
@@ -41,6 +34,13 @@ class CustomerDetail extends Component {
             console.log("props", customer);
             this.props.history.push(`/getCustomer?id=${id}`);
             // this.getCustomer(id);
+        } else if (this.props.location.search) {
+            // console.log(new URLSearchParams(this.props.location.search);)
+            const id = this.props.location.search.substring(4);
+            this.setState({ id: id });
+            console.log("id", id)
+            this.props.history.push(`/getCustomer?id=${id}`);
+            this.getCustomer(id);
         }
         // console.log('history.push()', this.props.history.push(`/getCustomers/${this.props.customer.id}`))
     }
