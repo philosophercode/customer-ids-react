@@ -33,13 +33,14 @@ class CustomerDetail extends Component {
             this.setState({ customer: customer });
             console.log("props", customer);
             this.props.history.push(`/getCustomer?id=${id}`);
+            this.customerInfo(customer);
             // this.getCustomer(id);
         } else if (this.props.location.search) {
             // console.log(new URLSearchParams(this.props.location.search);)
             const id = this.props.location.search.substring(4);
             this.setState({ id: id });
             console.log("id", id)
-            this.props.history.push(`/getCustomer?id=${id}`);
+            // this.props.history.push(`/getCustomer?id=${id}`);
             this.getCustomer(id);
         }
         // console.log('history.push()', this.props.history.push(`/getCustomers/${this.props.customer.id}`))
@@ -68,16 +69,16 @@ class CustomerDetail extends Component {
                 <div className="container">
                     <ul>
                         <li>
-                            <h2 id="name">{customer?.name}</h2>
+                            <h2 class="name">{customer?.name}</h2>
                         </li>
                         <li>
-                            <h3 id="id">{customer?.id}</h3>
+                            <h3 class="id">{customer?.id}</h3>
                         </li>
                         <li>
-                            <p id="role">{customer?.role}</p>
+                            <p class="role">{customer?.role}</p>
                         </li>
                         <li>
-                            <p id="age">{customer?.age}</p>
+                            <p class="age">{customer?.age}</p>
                         </li>
                         <Link to="/getCustomers">
                             <button>

@@ -20,23 +20,19 @@ button {
   border-radius: 2px;
 }
 
-#name {
+.name {
   text-transform: lowercase;
 }
 
-#name::first-letter {
-  text-transform: uppercase;
-}
-
-#id {
+.id {
   font-weight: 100;
 }
 
-#role {
+.role {
   text-transform: uppercase;
 }
 
-#age {
+.age {
   color: blue;
 }
 

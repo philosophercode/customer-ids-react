@@ -46,10 +46,10 @@ class List extends Component {
         return (
             <ul key={i} onClick={() => this.setState({ customer: customer })}>
                 <li>
-                    <h2 id="name">{customer?.name}</h2>
+                    <h2 class="name">{customer?.name}</h2>
                 </li>
                 <li>
-                    <h3 id="id">{customer?.id}</h3>
+                    <h3 class="id">{customer?.id}</h3>
                 </li>
             </ul>
         );
