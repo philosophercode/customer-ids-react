@@ -69,16 +69,16 @@ class CustomerDetail extends Component {
                 <div className="container">
                     <ul>
                         <li>
-                            <h2 class="name">{customer?.name}</h2>
+                            <h2 className="name">{customer?.name}</h2>
                         </li>
                         <li>
-                            <h3 class="id">{customer?.id}</h3>
+                            <h3 className="id">{customer?.id}</h3>
                         </li>
                         <li>
-                            <p class="role">{customer?.role}</p>
+                            <p className="role">{customer?.role}</p>
                         </li>
                         <li>
-                            <p class="age">{customer?.age}</p>
+                            <p className="age">{customer?.age}</p>
                         </li>
                         <Link to="/getCustomers">
                             <button>
