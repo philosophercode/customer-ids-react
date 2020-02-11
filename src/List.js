@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
-import { useLocation, withRouter } from "react-router";
-// import {
-//     BrowserRouter as Router,
-//     Switch,
-//     Route,
-//     Link,
-//     Redirect,
-//     useLocation,
-//     useParams
-// } from "react-router-dom";
-
-import CustomerDetail from "./CustomerDetail"
+import { withRouter } from "react-router";
+import CustomerDetail from "./CustomerDetail";
 
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
             customers: null,
-            customer: null,
+            id: null
         };
     };
 
     componentDidMount() {
         this.getCustomers();
-    }
-
+    };
 
     getCustomers = async () => {
         let response = await fetch("https://customer-ids.herokuapp.com/");
@@ -34,58 +23,35 @@ class List extends Component {
         return data;
     };
 
-    setCustomer = (customer) => {
-        this.setState({ customer: customer });
-        console.log("~~~WOOOOOOW~~~", customer);
-    };
+    keyGen = () => Math.floor(10000*Math.random());
 
-    customerList = (customer, i) => {
-        if (this.state.customer) {
-            return <CustomerDetail customer={this.state.customer} />
-        }
+    customerList = (customer) => {
+        if (this.state.id) return <CustomerDetail key={this.keyGen()} id={this.state.id} />;
         return (
-            <ul key={i} onClick={() => this.setState({ customer: customer })}>
-                <li>
-                    <h2 className="name">{customer?.name}</h2>
+            <ul key={this.keyGen()} onClick={() => this.setState({ id: customer.id })}>
+                <li key={this.keyGen()}>
+                    <h2 key={this.keyGen()} className="name">{customer?.name}</h2>
                 </li>
-                <li>
-                    <h3 className="id">{customer?.id}</h3>
+                <li key={this.keyGen()}>
+                    <h3 key={this.keyGen()} className="id">{customer?.id}</h3>
                 </li>
             </ul>
         );
-    }
+    };
 
     render() {
-        if (this.state.customer) {
-            return (
-                <CustomerDetail customer={this.state.customer} />
-            );
-        } else if (this.props.location.search) {
-            const id = this.props.location.search.substring(4);
-            return <CustomerDetail id={id} />
-        } else {
-
-            return (
-                <div>
-                    {this.state.customers ? <h1>Customer List</h1> : null}
-                    <div className="container">
-
-                        {this.state.customers ?
-                            this.state.customers.map((customer, i) => this.customerList(customer, i))
-                            : null
-                        }
-                        {/* {this.state.customers ?
-                        this.state.customers.map((customer, i) => <ListItem customer={customer} key={i} setCustomer={this.setCustomer} />)
+        return (
+            <div key={this.keyGen()}>
+                <h1>Customer List</h1>
+                <div className="container" key={this.keyGen()}>
+                    {this.state.customers ?
+                        this.state.customers.map(customer => this.customerList(customer))
                         : null
-                    } */}
-                        {/* {!this.state.customer? <button onClick={this.getCustomers}>GET CUSTOMERS</button> : null} */}
-                    </div>
+                    }
                 </div>
-            );
-        }
-
+            </div>
+        );
     };
-}
+};
 
-// export default List;
 export default withRouter(List);

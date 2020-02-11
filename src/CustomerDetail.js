@@ -1,106 +1,65 @@
 import React, { Component } from 'react';
-import { useLocation, withRouter } from "react-router";
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
-import List from './List'
+import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
+
 class CustomerDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             customer: null,
-            id: null
         };
     };
 
-    // useQuery = () => {
-    //     return new URLSearchParams(useLocation().search);
-    // }
-
-    // query = this.useQuery();
-    // console.log('query.get("id")', query.get("id"))
-
     componentDidMount() {
-        // if (this.props.location.search.length === 0) {
-        //     console.log('this.props.location', this.props.location)
-        //     return <List />
-        // }
-        if (this.props.customer) {
-            const customer = this.props.customer;
-            const id = this.props.customer.id;
-            // this.setState({ id: id });
-            this.setState({ customer: customer });
-            console.log("props", customer);
-            this.props.history.push(`/getCustomer?id=${id}`);
-            this.customerInfo(customer);
-            // this.getCustomer(id);
-        } else if (this.props.location.search) {
-            // console.log(new URLSearchParams(this.props.location.search);)
-            const id = this.props.location.search.substring(4);
-            this.setState({ id: id });
-            console.log("id", id)
-            // this.props.history.push(`/getCustomer?id=${id}`);
-            this.getCustomer(id);
-        }
-        // console.log('history.push()', this.props.history.push(`/getCustomers/${this.props.customer.id}`))
-    }
+        if (this.props.id) return this.props.history.push(`/getCustomer?id=${this.props.id}`);
+        const id = this.props.location.search.substring(4);
+        this.getCustomer(id);
+    };
 
     getCustomer = async (id) => {
         let response = await fetch(`https://customer-ids.herokuapp.com/getCustomer?id=${id}`);
         let data = await response.json();
-        this.setState({ customer: data[0] });
-        console.log('get customer :', data);
-        // this.props.history.push(`/getCustomers/${id}`);
-        return this.customerInfo(data);
-        // return JSON.stringify(data);
+        this.setState({ customer: data });
     };
-
-    setCustomer = (customer) => {
-        this.setState({ customer: customer });
-        console.log("~~~WOOOOOOW~~~", customer);
-    };
+    
+    keyGen = () => Math.floor(10000*Math.random());
 
     customerInfo = (customer) => {
-        console.log('customer', customer)
         return (
             <div>
                 <h1>Customer Detail</h1>
-                <div className="container">
-                    <ul>
-                        <li>
-                            <h2 className="name">{customer?.name}</h2>
+                <div className="container-col">
+                    <ul key={this.keyGen()}>
+                        <li key={this.keyGen()}>
+                            <h2 key={this.keyGen()} className="name">{customer?.name}</h2>
                         </li>
-                        <li>
-                            <h3 className="id">{customer?.id}</h3>
+                        <li key={this.keyGen()}>
+                            <h3 key={this.keyGen()} className="id">{customer?.id}</h3>
                         </li>
-                        <li>
-                            <p className="role">{customer?.role}</p>
+                        <li key={this.keyGen()}>
+                            <p key={this.keyGen()} className="role">{customer?.role}</p>
                         </li>
-                        <li>
-                            <p className="age">{customer?.age}</p>
+                        <li key={this.keyGen()}>
+                            <p key={this.keyGen()} className="age">{customer?.age}</p>
                         </li>
-                        <Link to="/getCustomers">
-                            <button>
-                                All
-                            </button>
-                        </Link>
                     </ul>
-
-
+                    <Link to="/getCustomers">
+                        <button>
+                            All Customers
+                        </button>
+                    </Link>
                 </div>
             </div>
         );
-    }
+    };
 
     render() {
         return (
             <div className="container">
-                {/* {this.props.id ? null : this.customerInfo(this.props.customer)} */}
                 {this.state.customer ? this.customerInfo(this.state.customer) : null}
             </div>
         );
     };
-}
+};
 
 export default withRouter(CustomerDetail);

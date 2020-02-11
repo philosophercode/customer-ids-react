@@ -42,6 +42,12 @@ button {
   flex-wrap: wrap;
 }
 
+.container-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 .sticky {
   position: fixed;
   top: 0;
