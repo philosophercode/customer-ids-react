@@ -8,7 +8,6 @@ button {
 
 button {
   background-color: #4CAF50;
-  /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -16,7 +15,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  padding: .5em 1em;
+  padding-top: .5em 1em;
   border-radius: 2px;
 }
 
@@ -29,16 +28,24 @@ button {
 }
 
 .role {
-  /* text-transform: uppercase; */
 }
 
 .age {
   color: blue;
 }
 
+.customer{
+  border-radius: 15px;
+  padding-right: 1rem;
+}
+
+.customer:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
 .container {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
 }
 

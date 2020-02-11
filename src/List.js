@@ -28,7 +28,7 @@ class List extends Component {
     customerList = (customer) => {
         if (this.state.id) return <CustomerDetail key={this.keyGen()} id={this.state.id} />;
         return (
-            <ul key={this.keyGen()} onClick={() => this.setState({ id: customer.id })}>
+            <ul className="customer" key={this.keyGen()} onClick={() => this.setState({ id: customer.id })}>
                 <li key={this.keyGen()}>
                     <h2 key={this.keyGen()} className="name">{customer?.name}</h2>
                 </li>
