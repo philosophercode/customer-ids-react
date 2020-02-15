@@ -10,9 +10,13 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          {/* Gets all customers */}
           <Route exact path="/" children={<List />} />
+          {/* Gets all customers */}
           <Route exact path="/getCustomers" children={<List />} />
+          {/* Gets specific customers */}
           <Route exact path="/getCustomer" children={<CustomerDetail />} />
+          {/* Page not found - 404 */}
           <Route path="*">
             <h1>404</h1>
           </Route>

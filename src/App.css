@@ -15,12 +15,10 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  /* padding-top: .5em 1em; */
   border-radius: 2px;
 }
 
 .name {
-  /* text-transform: lowercase; */
 }
 
 .id {

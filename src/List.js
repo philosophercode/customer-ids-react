@@ -15,16 +15,18 @@ class List extends Component {
         this.getCustomers();
     };
 
+    // fetch list of all customers
     getCustomers = async () => {
         let response = await fetch("https://customer-ids.herokuapp.com/");
         let data = await response.json();
         this.setState({ customers: data });
-        console.log('data :', data);
         return data;
     };
 
+    // Creates key prop for dom nodes
     keyGen = () => Math.floor(10000*Math.random());
 
+    // Returns customer obj as HTML
     customerList = (customer) => {
         if (this.state.id) return <CustomerDetail key={this.keyGen()} id={this.state.id} />;
         return (
@@ -33,12 +35,13 @@ class List extends Component {
                     <h2 key={this.keyGen()} className="name">{customer?.name}</h2>
                 </li>
                 <li key={this.keyGen()}>
-                    <h3 key={this.keyGen()} className="id">{customer?.id}</h3>
+                    <h3 key={this.keyGen()} className="id">ID: {customer?.id}</h3>
                 </li>
             </ul>
         );
     };
 
+    // Conditionally renders customers and IDs if fetch req is complete
     render() {
         return (
             <div key={this.keyGen()}>

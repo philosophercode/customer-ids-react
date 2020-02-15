@@ -1,22 +1,4 @@
-# steps:
-#   - name: node
-#     entrypoint: npm
-#     args: ['install']
-#   # - name: node
-#   #   entrypoint: npm
-#   #   args: ['test']
-#   - name: node
-#     entrypoint: npm
-#     args: ['run', 'build']
-
 runtime: nodejs10
-
-# handlers:
-#   - url: /
-#     static_files: build/index.html
-#     upload: build/index.html
-#   - url: /
-#     static_dir: build
 
 handlers:
   - url: /static
